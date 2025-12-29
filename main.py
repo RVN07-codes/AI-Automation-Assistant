@@ -1,13 +1,19 @@
 from modules.commands import process_command
+from modules.voice import listen_command
 
 def start_assistant():
     print("AI Automation Assistant Started")
-    print("Type 'exit' to stop\n")
+    print("Say or type 'exit' to stop\n")
 
     while True:
-        command = input(">> ").lower()
+        mode = input("Type 'v' for voice or 't' for text: ").lower()
 
-        if command == "exit":
+        if mode == 'v':
+            command = listen_command()
+        else:
+            command = input(">> ").lower()
+
+        if "exit" in command:
             print("Assistant shutting down.")
             break
 
