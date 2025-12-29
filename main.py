@@ -12,7 +12,7 @@ def start_assistant():
             continue
 
         if "open" in command:
-            app = command.replace("open", "").strip()
+            app = command.replace("open", "", 1).strip()
             response = open_app(app)
             print(response)
 
