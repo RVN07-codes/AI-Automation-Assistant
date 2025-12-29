@@ -1,23 +1,23 @@
-from modules.commands import process_command
 from modules.voice import listen_command
+from modules.system import open_app
 
 def start_assistant():
-    print("AI Automation Assistant Started")
-    print("Say or type 'exit' to stop\n")
+    print("Jarvis online...")
 
     while True:
-        mode = input("Type 'v' for voice or 't' for text: ").lower()
+        command = listen_command()
+        print("Heard:", command)
 
-        if mode == 'v':
-            command = listen_command()
-        else:
-            command = input(">> ").lower()
+        if command is None:
+            continue
 
-        if "exit" in command:
-            print("Assistant shutting down.")
+        if "open" in command:
+            app = command.replace("open", "").strip()
+            response = open_app(app)
+            print(response)
+
+        elif "exit" in command or "quit" in command:
+            print("Shutting down Jarvis")
             break
 
-        process_command(command)
-
-if __name__ == "__main__":
-    start_assistant()
+start_assistant()
