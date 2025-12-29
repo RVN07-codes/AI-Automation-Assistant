@@ -1,5 +1,6 @@
 import os
 import subprocess
+import psutil
 
 START_MENU_PATHS = [
     r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs",
